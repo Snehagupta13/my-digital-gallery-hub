@@ -2,7 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/SiteChrome";
 import { Timeline } from "@/components/Timeline";
 import { TagList } from "@/components/TagList";
-import { experience, education } from "@/lib/portfolio-data";
+import { WorkProjectCard } from "@/components/WorkProjectCard";
+import { experience, education, workProjects } from "@/lib/portfolio-data";
+
 
 export const Route = createFileRoute("/experience")({
   head: () => ({

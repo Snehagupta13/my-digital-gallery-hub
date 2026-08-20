@@ -75,7 +75,7 @@ function Index() {
     <main>
       <section className="relative overflow-hidden" style={{ transform: "translateZ(0)" }}>
         <HeroBackdrop />
-        <div className="relative z-10 mx-auto max-w-5xl px-5 pt-16 pb-14 sm:px-6 sm:pt-24 sm:pb-20">
+        <div className="relative z-10 mx-auto max-w-5xl px-5 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-32">
           <div className="grid items-center gap-10 sm:grid-cols-[1.2fr_0.8fr] sm:gap-12">
             <div ref={heroRef}>
               <p className="label-mono">
@@ -138,10 +138,11 @@ function Index() {
               />
             </div>
           </div>
-          <div className="mt-12 sm:mt-16">
-            <StatStrip />
-          </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-5 pb-14 sm:px-6 sm:pb-16">
+        <StatStrip />
       </section>
 
       <Marquee items={marqueeItems} />

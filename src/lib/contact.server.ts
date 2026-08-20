@@ -9,12 +9,9 @@ export async function storeContactMessage(input: ContactInput) {
     { auth: { persistSession: false, autoRefreshToken: false } },
   );
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("contact_messages")
-    .insert({ name: input.name, email: input.email, message: input.message })
-    .select("id")
-    .single();
+    .insert({ name: input.name, email: input.email, message: input.message });
 
   if (error) throw new Error(error.message);
-  return data.id as string;
 }

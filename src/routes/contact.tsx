@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/SiteChrome";
+import { ContactForm } from "@/components/ContactForm";
 import { profile } from "@/lib/portfolio-data";
+
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -32,20 +34,32 @@ function ContactPage() {
       title="Let's talk"
       intro="Open to AI engineering roles and collaborations on agentic, RAG and voice systems."
     >
-      <ul className="divide-y divide-border border-y border-border">
-        {links.map((l) => (
-          <li key={l.label}>
-            <a
-              href={l.href}
-              className="flex items-center justify-between gap-4 py-5 transition-colors hover:text-primary"
-            >
-              <span className="label-mono">{l.label}</span>
-              <span className="font-mono text-sm">{l.value}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-8 font-mono text-xs text-muted-foreground">Based in {profile.location}</p>
+      <div className="grid gap-14 md:grid-cols-[1.1fr_0.9fr]">
+        <section>
+          <h2 className="label-mono">Send a message</h2>
+          <div className="mt-6">
+            <ContactForm />
+          </div>
+        </section>
+        <section>
+          <h2 className="label-mono">Direct</h2>
+          <ul className="mt-6 divide-y divide-border border-y border-border">
+            {links.map((l) => (
+              <li key={l.label}>
+                <a
+                  href={l.href}
+                  className="flex items-center justify-between gap-4 py-5 transition-colors hover:text-primary"
+                >
+                  <span className="label-mono">{l.label}</span>
+                  <span className="font-mono text-sm">{l.value}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 font-mono text-xs text-muted-foreground">Based in {profile.location}</p>
+        </section>
+      </div>
+
     </PageShell>
   );
 }

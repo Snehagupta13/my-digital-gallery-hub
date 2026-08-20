@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { profile, skills, education, experience, projects } from "@/lib/portfolio-data";
+import { profile, skills, education, experience, projects, workProjects } from "@/lib/portfolio-data";
 import { SectionHeading } from "@/components/SectionHeading";
 import { StatStrip } from "@/components/StatStrip";
 import { ProjectCard } from "@/components/ProjectCard";
+import { WorkProjectCard } from "@/components/WorkProjectCard";
 import { Marquee } from "@/components/Marquee";
 import { TagList } from "@/components/TagList";
 

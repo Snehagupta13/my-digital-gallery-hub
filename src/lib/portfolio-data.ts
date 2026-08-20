@@ -1,3 +1,6 @@
+import dicomAsset from "@/assets/dicompixel.png.asset.json";
+import stanleyAsset from "@/assets/stanley-ai.png.asset.json";
+
 export const profile = {
   name: "Sneha Gupta",
   role: "AI Engineer",
@@ -195,5 +198,35 @@ export const projects: Project[] = [
     url: "https://github.com/Snehagupta13/Tweet-Sentiment-Analysis",
     summary: "Classical NLP sentiment classifier over tweet corpora.",
     tools: ["NLP", "Scikit-learn", "Python"],
+  },
+];
+
+export type WorkProject = {
+  name: string;
+  org: string;
+  tagline: string;
+  summary: string;
+  image: string;
+  tools: string[];
+};
+
+export const workProjects: WorkProject[] = [
+  {
+    name: "Stanley AI",
+    org: "Meril Life Science",
+    tagline: "Compliance, supported by agentic intelligence.",
+    summary:
+      "Medical device documentation workspace for EU MDR, US FDA and CDSCO submissions — generating design inputs, GSPR coverage and audit-ready dossiers in a single session-aware platform. I built the multi-agent workflows, RAG retrieval and the Stella / Stan assistants.",
+    image: stanleyAsset.url,
+    tools: ["LangGraph", "LangSmith", "RAG", "Neo4j", "Milvus", "FastAPI", "Ollama"],
+  },
+  {
+    name: "DicomPixel",
+    org: "Meril Life Science",
+    tagline: "From data chaos to AI-driven precision.",
+    summary:
+      "Medical imaging platform bringing order to unstructured DICOM data — microservices for image conversion, metadata extraction, annotation, compression and segmentation, powering downstream AI in healthcare.",
+    image: dicomAsset.url,
+    tools: ["Python", "DICOM", "Microservices", "OpenCV", "Docker", "FastAPI"],
   },
 ];

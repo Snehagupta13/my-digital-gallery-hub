@@ -1,5 +1,6 @@
-import dicomAsset from "@/assets/dicompixel.png.asset.json";
-import stanleyAsset from "@/assets/stanley-ai.png.asset.json";
+import dicomImage from "@/assets/dicompixel.png";
+import stanleyImage from "@/assets/stanley-ai.png";
+import videoSummarizerVideo from "@/assets/Vedio_Summarizer.mp4";
 
 export const profile = {
   name: "Sneha Gupta",
@@ -9,6 +10,7 @@ export const profile = {
   phone: "8960971817",
   github: "https://github.com/Snehagupta13",
   linkedin: "https://www.linkedin.com/in/snehagupta",
+  resumeUrl: "/sneha-gupta-resume.pdf",
   tagline:
     "I build production AI systems — multi-agent workflows, RAG pipelines and voice assistants for regulated healthcare and medical imaging.",
 };
@@ -101,6 +103,7 @@ export type Project = {
   summary: string;
   tools: string[];
   featured?: boolean;
+  video?: string;
 };
 
 export const projects: Project[] = [
@@ -121,6 +124,7 @@ export const projects: Project[] = [
       "Multimodal video-understanding pipeline: frame sampling with BLIP scene captions, EasyOCR for on-screen text and WhisperX speech transcripts, fused by a LangGraph StateGraph into one narrative. A FAISS + sentence-transformers RAG chatbot answers questions over the video via CLI and Streamlit.",
     tools: ["LangGraph", "BLIP", "EasyOCR", "WhisperX", "Groq/Llama 3", "FAISS", "Streamlit"],
     featured: true,
+    video: videoSummarizerVideo,
   },
   {
     name: "Ayurveda AI",
@@ -217,7 +221,7 @@ export const workProjects: WorkProject[] = [
     tagline: "Compliance, supported by agentic intelligence.",
     summary:
       "Medical device documentation workspace for EU MDR, US FDA and CDSCO submissions — generating design inputs, GSPR coverage and audit-ready dossiers in a single session-aware platform. I built the multi-agent workflows, RAG retrieval and the Stella / Stan assistants.",
-    image: stanleyAsset.url,
+    image: stanleyImage,
     tools: ["LangGraph", "LangSmith", "RAG", "Neo4j", "Milvus", "FastAPI", "Ollama"],
   },
   {
@@ -226,7 +230,7 @@ export const workProjects: WorkProject[] = [
     tagline: "From data chaos to AI-driven precision.",
     summary:
       "Medical imaging platform bringing order to unstructured DICOM data — microservices for image conversion, metadata extraction, annotation, compression and segmentation, powering downstream AI in healthcare.",
-    image: dicomAsset.url,
+    image: dicomImage,
     tools: ["Python", "DICOM", "Microservices", "OpenCV", "Docker", "FastAPI"],
   },
 ];

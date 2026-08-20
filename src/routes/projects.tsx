@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/SiteChrome";
 import { ProjectCard } from "@/components/ProjectCard";
 import { projects } from "@/lib/portfolio-data";
+import { useReveal } from "@/hooks/use-reveal";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -25,6 +26,8 @@ export const Route = createFileRoute("/projects")({
 function ProjectsPage() {
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
+  const featuredGridRef = useReveal<HTMLDivElement>();
+  const restGridRef = useReveal<HTMLDivElement>();
 
   return (
     <PageShell
@@ -35,7 +38,7 @@ function ProjectsPage() {
       <div className="space-y-12">
         <section>
           <p className="label-mono">Featured</p>
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
+          <div ref={featuredGridRef} className="mt-5 grid gap-4 md:grid-cols-2">
             {featured.map((p) => (
               <ProjectCard key={p.repo} project={p} />
             ))}
@@ -43,7 +46,7 @@ function ProjectsPage() {
         </section>
         <section>
           <p className="label-mono">More work</p>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div ref={restGridRef} className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((p) => (
               <ProjectCard key={p.repo} project={p} compact />
             ))}

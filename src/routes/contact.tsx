@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/SiteChrome";
 import { ContactForm } from "@/components/ContactForm";
 import { profile } from "@/lib/portfolio-data";
+import { useReveal } from "@/hooks/use-reveal";
 
 
 export const Route = createFileRoute("/contact")({
@@ -25,9 +26,12 @@ const links = [
   { label: "Phone", value: profile.phone, href: `tel:+91${profile.phone}` },
   { label: "GitHub", value: "Snehagupta13", href: profile.github },
   { label: "LinkedIn", value: "snehagupta", href: profile.linkedin },
+  { label: "Resume", value: "Download PDF", href: profile.resumeUrl, download: true },
 ];
 
 function ContactPage() {
+  const linksRef = useReveal<HTMLUListElement>();
+
   return (
     <PageShell
       eyebrow="Contact"
@@ -43,11 +47,12 @@ function ContactPage() {
         </section>
         <section>
           <h2 className="label-mono">Direct</h2>
-          <ul className="mt-6 divide-y divide-border border-y border-border">
+          <ul ref={linksRef} className="mt-6 divide-y divide-border border-y border-border">
             {links.map((l) => (
               <li key={l.label}>
                 <a
                   href={l.href}
+                  download={l.download}
                   className="flex items-center justify-between gap-4 py-5 transition-colors hover:text-primary"
                 >
                   <span className="label-mono">{l.label}</span>

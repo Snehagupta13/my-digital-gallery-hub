@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { profile } from "@/lib/portfolio-data";
 
@@ -36,6 +37,16 @@ export function SiteHeader() {
               {n.label}
             </Link>
           ))}
+          <motion.a
+            href={profile.resumeUrl}
+            download
+            className="rounded-sm border border-border px-3 py-1.5 font-mono text-xs uppercase tracking-[0.14em] text-foreground transition-colors hover:border-primary hover:text-primary"
+            whileHover={{ y: -2, scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          >
+            Resume
+          </motion.a>
         </nav>
 
         <button
@@ -63,6 +74,14 @@ export function SiteHeader() {
               {n.label}
             </Link>
           ))}
+          <a
+            href={profile.resumeUrl}
+            download
+            onClick={() => setOpen(false)}
+            className="block py-2.5 font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Resume
+          </a>
         </nav>
       ) : null}
     </header>

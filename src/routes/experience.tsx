@@ -4,6 +4,7 @@ import { Timeline } from "@/components/Timeline";
 import { TagList } from "@/components/TagList";
 import { WorkProjectCard } from "@/components/WorkProjectCard";
 import { experience, education, workProjects } from "@/lib/portfolio-data";
+import { useReveal } from "@/hooks/use-reveal";
 
 
 export const Route = createFileRoute("/experience")({
@@ -28,6 +29,7 @@ export const Route = createFileRoute("/experience")({
 
 function ExperiencePage() {
   const stackItems = experience.stack.split(" · ");
+  const workGridRef = useReveal<HTMLDivElement>();
 
   return (
     <PageShell
@@ -40,7 +42,7 @@ function ExperiencePage() {
 
         <section>
           <p className="label-mono">Organization products</p>
-          <div className="mt-5 grid gap-5 lg:grid-cols-2">
+          <div ref={workGridRef} className="mt-5 grid gap-5 lg:grid-cols-2">
             {workProjects.map((p) => (
               <WorkProjectCard key={p.name} project={p} />
             ))}

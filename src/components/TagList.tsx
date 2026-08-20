@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 export function TagList({
   items,
   className = "",
@@ -13,12 +15,14 @@ export function TagList({
   return (
     <ul className={`flex flex-wrap gap-1.5 ${className}`}>
       {shown.map((t) => (
-        <li
+        <motion.li
           key={t}
           className="rounded-sm border border-border bg-secondary px-2 py-0.5 font-mono text-[0.7rem] text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+          whileHover={{ y: -2, scale: 1.06 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
         >
           {t}
-        </li>
+        </motion.li>
       ))}
       {rest > 0 ? (
         <li className="rounded-sm px-2 py-0.5 font-mono text-[0.7rem] text-muted-foreground">

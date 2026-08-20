@@ -38,7 +38,17 @@ function ExperiencePage() {
       <div className="space-y-12">
         <Timeline items={experience.groups} />
 
+        <section>
+          <p className="label-mono">Organization products</p>
+          <div className="mt-5 grid gap-5 lg:grid-cols-2">
+            {workProjects.map((p) => (
+              <WorkProjectCard key={p.name} project={p} />
+            ))}
+          </div>
+        </section>
+
         <div>
+
           <p className="label-mono">Tech stack</p>
           <TagList items={stackItems} className="mt-4" />
         </div>

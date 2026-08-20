@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/SiteChrome";
+import { Timeline } from "@/components/Timeline";
+import { TagList } from "@/components/TagList";
 import { experience, education } from "@/lib/portfolio-data";
 
 export const Route = createFileRoute("/experience")({
@@ -23,30 +25,20 @@ export const Route = createFileRoute("/experience")({
 });
 
 function ExperiencePage() {
+  const stackItems = experience.stack.split(" · ");
+
   return (
     <PageShell
       eyebrow="Experience"
       title={experience.company}
       intro={`${experience.title} · ${experience.period}`}
     >
-      <div className="space-y-10">
-        {experience.groups.map((g) => (
-          <div key={g.name} className="surface p-6">
-            <h2 className="font-mono text-sm uppercase tracking-[0.12em] text-primary">{g.name}</h2>
-            <ul className="mt-4 space-y-3">
-              {g.points.map((p) => (
-                <li key={p} className="flex gap-3 text-sm text-muted-foreground">
-                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      <div className="space-y-12">
+        <Timeline items={experience.groups} />
 
         <div>
           <p className="label-mono">Tech stack</p>
-          <p className="mt-3 font-mono text-sm text-muted-foreground">{experience.stack}</p>
+          <TagList items={stackItems} className="mt-4" />
         </div>
 
         <div className="border-t border-border pt-8">

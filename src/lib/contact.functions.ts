@@ -13,5 +13,4 @@ export const submitContactMessage = createServerFn({ method: "POST" })
       console.error("contact submit failed", e);
       throw e;
     }
-    return { ok: true as const, id };
   });

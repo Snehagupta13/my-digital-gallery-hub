@@ -5,7 +5,7 @@ export function TagList({
 }: {
   items: string[];
   className?: string;
-  max?: number;
+  max?: number | undefined;
 }) {
   const shown = max ? items.slice(0, max) : items;
   const rest = items.length - shown.length;

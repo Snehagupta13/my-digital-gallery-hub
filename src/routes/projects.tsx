@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/SiteChrome";
+import { ProjectCard } from "@/components/ProjectCard";
 import { projects } from "@/lib/portfolio-data";
 
 export const Route = createFileRoute("/projects")({
@@ -22,37 +23,32 @@ export const Route = createFileRoute("/projects")({
 });
 
 function ProjectsPage() {
+  const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
+
   return (
     <PageShell
       eyebrow="Projects"
       title="Things I've built"
       intro="Open-source work from github.com/Snehagupta13 — voice AI, multimodal RAG and agentic pipelines."
     >
-      <div className="grid gap-4 sm:grid-cols-2">
-        {projects.map((p) => (
-          <a
-            key={p.repo}
-            href={p.url}
-            className="surface group flex flex-col p-6 transition-colors hover:border-primary"
-          >
-            <div className="flex items-baseline justify-between gap-3">
-              <h2 className="text-lg font-semibold group-hover:text-primary">{p.name}</h2>
-              <span className="font-mono text-xs text-muted-foreground">↗</span>
-            </div>
-            <p className="mt-1 font-mono text-xs text-muted-foreground">Snehagupta13/{p.repo}</p>
-            <p className="mt-4 flex-1 text-sm text-muted-foreground">{p.summary}</p>
-            <ul className="mt-5 flex flex-wrap gap-2">
-              {p.tools.map((t) => (
-                <li
-                  key={t}
-                  className="rounded-sm border border-border bg-secondary px-2 py-0.5 font-mono text-[0.7rem] text-muted-foreground"
-                >
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </a>
-        ))}
+      <div className="space-y-12">
+        <section>
+          <p className="label-mono">Featured</p>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {featured.map((p) => (
+              <ProjectCard key={p.repo} project={p} />
+            ))}
+          </div>
+        </section>
+        <section>
+          <p className="label-mono">More work</p>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {rest.map((p) => (
+              <ProjectCard key={p.repo} project={p} compact />
+            ))}
+          </div>
+        </section>
       </div>
     </PageShell>
   );

@@ -17,6 +17,7 @@ export const profile = {
 
 export const experience = {
   company: "Meril Life Science",
+  companyUrl: "https://www.merillife.com/",
   title: "AI Engineer",
   period: "Aug 2024 — Present",
   stack:

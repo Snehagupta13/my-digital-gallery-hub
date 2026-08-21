@@ -1,13 +1,22 @@
 import { motion } from "motion/react";
 import type { WorkProject } from "@/lib/portfolio-data";
-import { TagList } from "@/components/TagList";
+import { TagMarquee } from "@/components/TagMarquee";
 import { useTiltHover } from "@/hooks/use-tilt-hover";
 
 export function WorkProjectCard({ project }: { project: WorkProject }) {
   const tilt = useTiltHover();
 
   return (
-    <article className="h-full">
+    <article className="group relative isolate h-full">
+      <div
+        aria-hidden="true"
+        className="absolute -inset-6 -z-10 rounded-lg opacity-40 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
+        style={{
+          backgroundImage: `url(${project.image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
       <motion.div
         className="surface card-hover h-full overflow-hidden"
         style={tilt.style}
@@ -30,7 +39,7 @@ export function WorkProjectCard({ project }: { project: WorkProject }) {
           <h3 className="mt-2 text-lg font-semibold sm:text-xl">{project.name}</h3>
           <p className="mt-1 text-sm text-primary">{project.tagline}</p>
           <p className="mt-4 text-sm text-muted-foreground">{project.summary}</p>
-          <TagList items={project.tools} className="mt-5" />
+          <TagMarquee items={project.tools} className="mt-5" />
         </div>
       </motion.div>
     </article>

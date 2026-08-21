@@ -1,10 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "motion/react";
 import { PageShell } from "@/components/SiteChrome";
 import { Timeline } from "@/components/Timeline";
-import { TagList } from "@/components/TagList";
+import { TagMarquee } from "@/components/TagMarquee";
 import { WorkProjectCard } from "@/components/WorkProjectCard";
 import { experience, education, workProjects } from "@/lib/portfolio-data";
 import { useReveal } from "@/hooks/use-reveal";
+import { ScrollProgressBar } from "@/components/ScrollProgressBar";
+import { AmbientSparkles } from "@/components/AmbientSparkles";
 
 
 export const Route = createFileRoute("/experience")({
@@ -29,7 +32,7 @@ export const Route = createFileRoute("/experience")({
 
 function ExperiencePage() {
   const stackItems = experience.stack.split(" · ");
-  const workGridRef = useReveal<HTMLDivElement>();
+  const workGridRef = useReveal<HTMLDivElement>(":scope > *", "blur");
 
   return (
     <PageShell
@@ -37,7 +40,21 @@ function ExperiencePage() {
       title={experience.company}
       intro={`${experience.title} · ${experience.period}`}
     >
+      <AmbientSparkles />
+      <ScrollProgressBar />
       <div className="space-y-12">
+        <motion.a
+          href={experience.companyUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex w-fit items-center gap-1.5 rounded-sm border border-border px-3 py-1.5 font-mono text-xs uppercase tracking-[0.14em] text-foreground transition-colors hover:border-primary hover:text-primary"
+          whileHover={{ y: -2, scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+        >
+          merillife.com ↗
+        </motion.a>
+
         <Timeline items={experience.groups} />
 
         <section>
@@ -52,7 +69,7 @@ function ExperiencePage() {
         <div>
 
           <p className="label-mono">Tech stack</p>
-          <TagList items={stackItems} className="mt-4" />
+          <TagMarquee items={stackItems} className="mt-4" />
         </div>
 
         <div className="border-t border-border pt-8">

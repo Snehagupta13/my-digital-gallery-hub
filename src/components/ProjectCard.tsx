@@ -1,10 +1,18 @@
 import { useRef } from "react";
 import { motion } from "motion/react";
 import type { Project } from "@/lib/portfolio-data";
-import { TagList } from "@/components/TagList";
+import { TagMarquee } from "@/components/TagMarquee";
 import { useTiltHover } from "@/hooks/use-tilt-hover";
 
-export function ProjectCard({ project, compact }: { project: Project; compact?: boolean }) {
+export function ProjectCard({
+  project,
+  compact,
+  index,
+}: {
+  project: Project;
+  compact?: boolean;
+  index?: number;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const tilt = useTiltHover();
 
@@ -42,7 +50,12 @@ export function ProjectCard({ project, compact }: { project: Project; compact?: 
           </div>
         )}
         <div className="flex flex-1 flex-col p-5 sm:p-6">
-          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-3">
+          {index !== undefined && (
+            <p className="label-mono text-primary/70">N°{String(index).padStart(2, "0")}</p>
+          )}
+          <div
+            className={`grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-3 ${index !== undefined ? "mt-2" : ""}`}
+          >
             <h3 className="truncate text-base font-semibold transition-colors group-hover:text-primary sm:text-lg">
               {project.name}
             </h3>
@@ -58,7 +71,7 @@ export function ProjectCard({ project, compact }: { project: Project; compact?: 
           >
             {project.summary}
           </p>
-          <TagList items={project.tools} className="mt-5" max={compact ? 4 : undefined} />
+          <TagMarquee items={project.tools} className="mt-5" />
         </div>
       </motion.div>
     </a>

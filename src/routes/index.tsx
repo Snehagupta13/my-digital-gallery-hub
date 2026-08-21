@@ -5,6 +5,7 @@ import profileImage from "@/assets/sneha_gupta.jpeg";
 import { profile, skills, education, experience, projects, workProjects } from "@/lib/portfolio-data";
 import { SectionHeading } from "@/components/SectionHeading";
 import { HeroBackdrop } from "@/components/HeroBackdrop";
+import { AnimatedName } from "@/components/AnimatedName";
 import { StatStrip } from "@/components/StatStrip";
 import { ProjectCard } from "@/components/ProjectCard";
 import { WorkProjectCard } from "@/components/WorkProjectCard";
@@ -48,8 +49,9 @@ function Index() {
   useGSAP(
     () => {
       if (!heroRef.current || prefersReducedMotion()) return;
-      gsap.set(heroRef.current.children, { opacity: 0, y: 24 });
-      gsap.to(heroRef.current.children, {
+      const fadeTargets = gsap.utils.toArray("[data-hero-fade]", heroRef.current);
+      gsap.set(fadeTargets, { opacity: 0, y: 24 });
+      gsap.to(fadeTargets, {
         opacity: 1,
         y: 0,
         duration: 0.8,
@@ -78,18 +80,16 @@ function Index() {
         <div className="relative z-10 mx-auto max-w-5xl px-5 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-32">
           <div className="grid items-center gap-10 sm:grid-cols-[1.2fr_0.8fr] sm:gap-12">
             <div ref={heroRef}>
-              <p className="label-mono">
+              <p data-hero-fade className="label-mono">
                 {profile.role} · {profile.location}
               </p>
               <h1 className="mt-4 text-[2.75rem] font-semibold leading-[1.05] tracking-tight sm:text-7xl">
-                Sneha
-                <br />
-                <span className="text-primary">Gupta</span>
+                <AnimatedName first="Sneha" last="Gupta" />
               </h1>
-              <p className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
+              <p data-hero-fade className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
                 {profile.tagline}
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div data-hero-fade className="mt-8 flex flex-wrap gap-3">
                 <MotionLink
                   to="/projects"
                   className="glow-primary rounded-sm bg-primary px-5 py-2.5 font-mono text-xs uppercase tracking-[0.14em] text-primary-foreground"
@@ -129,13 +129,17 @@ function Index() {
                 </motion.a>
               </div>
             </div>
-            <div ref={photoRef} className="surface mx-auto aspect-[4/5] w-48 overflow-hidden sm:w-full">
-              <img
-                src={profileImage}
-                alt={profile.name}
-                loading="eager"
-                className="h-full w-full object-cover object-top"
-              />
+            <div ref={photoRef} className="relative mx-auto aspect-[4/5] w-48 sm:w-full">
+              <div className="photo-glow absolute -inset-8 sm:-inset-12" aria-hidden="true" />
+              <div className="surface photo-fade relative h-full w-full overflow-hidden">
+                <img
+                  src={profileImage}
+                  alt={profile.name}
+                  loading="eager"
+                  className="h-full w-full object-cover object-top grayscale-[15%] contrast-[1.05] saturate-[0.7]"
+                />
+                <div className="photo-tint pointer-events-none absolute inset-0" aria-hidden="true" />
+              </div>
             </div>
           </div>
         </div>

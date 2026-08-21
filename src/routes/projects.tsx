@@ -3,6 +3,7 @@ import { PageShell } from "@/components/SiteChrome";
 import { ProjectCard } from "@/components/ProjectCard";
 import { projects } from "@/lib/portfolio-data";
 import { useReveal } from "@/hooks/use-reveal";
+import { AmbientSparkles } from "@/components/AmbientSparkles";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -26,8 +27,8 @@ export const Route = createFileRoute("/projects")({
 function ProjectsPage() {
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
-  const featuredGridRef = useReveal<HTMLDivElement>();
-  const restGridRef = useReveal<HTMLDivElement>();
+  const featuredGridRef = useReveal<HTMLDivElement>(":scope > *", "flip");
+  const restGridRef = useReveal<HTMLDivElement>(":scope > *", "flip");
 
   return (
     <PageShell
@@ -35,20 +36,21 @@ function ProjectsPage() {
       title="Things I've built"
       intro="Open-source work from github.com/Snehagupta13 — voice AI, multimodal RAG and agentic pipelines."
     >
+      <AmbientSparkles />
       <div className="space-y-12">
         <section>
           <p className="label-mono">Featured</p>
           <div ref={featuredGridRef} className="mt-5 grid gap-4 md:grid-cols-2">
-            {featured.map((p) => (
-              <ProjectCard key={p.repo} project={p} />
+            {featured.map((p, i) => (
+              <ProjectCard key={p.repo} project={p} index={i + 1} />
             ))}
           </div>
         </section>
         <section>
           <p className="label-mono">More work</p>
           <div ref={restGridRef} className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {rest.map((p) => (
-              <ProjectCard key={p.repo} project={p} compact />
+            {rest.map((p, i) => (
+              <ProjectCard key={p.repo} project={p} compact index={featured.length + i + 1} />
             ))}
           </div>
         </section>

@@ -1,6 +1,7 @@
 import dicomImage from "@/assets/dicompixel.png";
 import stanleyImage from "@/assets/stanley-ai.png";
 import videoSummarizerVideo from "@/assets/Vedio_Summarizer.mp4";
+import resumePdf from "@/assets/sneha_resume.pdf";
 
 export const profile = {
   name: "Sneha Gupta",
@@ -10,7 +11,7 @@ export const profile = {
   phone: "8960971817",
   github: "https://github.com/Snehagupta13",
   linkedin: "https://www.linkedin.com/in/sneha-gupta-325746210/",
-  resumeUrl: "/sneha-gupta-resume.pdf",
+  resumeUrl: resumePdf,
   tagline:
     "I build production AI systems — multi-agent workflows, RAG pipelines and voice assistants for regulated healthcare and medical imaging.",
 };

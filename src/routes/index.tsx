@@ -78,7 +78,7 @@ function Index() {
       <section className="relative overflow-hidden" style={{ transform: "translateZ(0)" }}>
         <HeroBackdrop />
         <div className="relative z-10 mx-auto max-w-5xl px-5 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-32">
-          <div className="grid items-center gap-10 sm:grid-cols-[1.2fr_0.8fr] sm:gap-12">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12">
             <div ref={heroRef}>
               <p data-hero-fade className="label-mono">
                 {profile.role} · {profile.location}
@@ -129,7 +129,7 @@ function Index() {
                 </motion.a>
               </div>
             </div>
-            <div ref={photoRef} className="relative mx-auto aspect-[4/5] w-48 sm:w-full">
+            <div ref={photoRef} className="relative mx-auto aspect-[4/5] w-48 sm:w-64 lg:w-full">
               <div className="photo-glow absolute -inset-8 sm:-inset-12" aria-hidden="true" />
               <div className="surface photo-fade relative h-full w-full overflow-hidden">
                 <img

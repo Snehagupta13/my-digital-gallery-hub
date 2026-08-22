@@ -9,7 +9,7 @@ export const profile = {
   email: "vgupta123098@gmail.com",
   phone: "8960971817",
   github: "https://github.com/Snehagupta13",
-  linkedin: "https://www.linkedin.com/in/snehagupta",
+  linkedin: "https://www.linkedin.com/in/sneha-gupta-325746210/",
   resumeUrl: "/sneha-gupta-resume.pdf",
   tagline:
     "I build production AI systems — multi-agent workflows, RAG pipelines and voice assistants for regulated healthcare and medical imaging.",

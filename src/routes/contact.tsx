@@ -25,7 +25,7 @@ const links = [
   { label: "Email", value: profile.email, href: `mailto:${profile.email}` },
   { label: "Phone", value: profile.phone, href: `tel:+91${profile.phone}` },
   { label: "GitHub", value: "Snehagupta13", href: profile.github },
-  { label: "LinkedIn", value: "snehagupta", href: profile.linkedin },
+  { label: "LinkedIn", value: "sneha-gupta-325746210", href: profile.linkedin },
   { label: "Resume", value: "Download PDF", href: profile.resumeUrl, download: true },
 ];
 
